@@ -29,6 +29,9 @@
 		# resolve DNS name to IP address while adding to address list. Also use the dns name as comment.
 		/ip firewall address-list add list=yabl_dnsbl address=[:resolve $line] comment=$line
 	}
-} 
+}
+
+#Clean-up
+:execute [/file remove [/file find name=yabl_dnsbl_ru_propaganda.txt]];
 
 # This code was inspired by user "skot" from Mikrotik forums: (https://forum.mikrotik.com/viewtopic.php?t=93050#p464218) and by (https://github.com/pwlgrzs/Mikrotik-Blacklist)
