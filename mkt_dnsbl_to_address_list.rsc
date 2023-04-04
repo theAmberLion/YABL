@@ -1,6 +1,12 @@
-# THe command file get contents - has a known limitation of 4095 bytes. So if the file you are trying to read is larger than that - it will fail!
 
-:local content [/file get [/file find name=yabl_dnsbl.txt] contents] ;
+# Download the DNSBL
+/tool fetch url="https://raw.githubusercontent.com/theAmberLion/YABL/main/yabl_dnsbl_ru_propaganda.txt" mode=https
+
+# Parse each row and generate address list.
+# Mikrotik's command (file get contents) - has a known limitation of 4095 bytes. So if the file you are trying to read is larger than that - it will fail!
+# Look each row for newline and parse it to address-list
+
+:local content [/file get [/file find name=yabl_dnsbl_ru_propaganda.txt] contents] ;
 :local contentLen [:len $content];
 
 :local lineEnd 0;
@@ -20,6 +26,9 @@
 	:set lastEnd ($lineEnd + 1);
 # don't process blank lines
 	:if ($line != "\r") do={
+		# resolve DNS name to IP address while adding to address list. Also use the dns name as comment.
 		/ip firewall address-list add list=yabl_dnsbl address=[:resolve $line] comment=$line
 	}
 } 
+
+# This code was inspired by user "skot" from Mikrotik forums: (https://forum.mikrotik.com/viewtopic.php?t=93050#p464218) and by (https://github.com/pwlgrzs/Mikrotik-Blacklist)
