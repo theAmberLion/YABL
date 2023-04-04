@@ -1,5 +1,11 @@
+# Russian_propaganda
 sputniknews.com
 md.sputniknews.com
 ro.sputniknews.com
 sputniknews.ru
 md.sputniknews.ru
+vesti.ru
+smotrim.ru
+rt.com
+ria.ru
+vgtrk.ru
