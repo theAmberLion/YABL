@@ -1,4 +1,3 @@
-# Russian_propaganda
 sputniknews.com
 md.sputniknews.com
 ro.sputniknews.com
