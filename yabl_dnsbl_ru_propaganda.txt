@@ -8,6 +8,7 @@ md.sputniknews.com
 ro.sputniknews.com
 sputniknews.ru
 md.sputniknews.ru
+dzen.ru
 ivteleradio.ru
 vesti.ru
 smotrim.ru
@@ -60,3 +61,13 @@ africa-rus.com
 fontanka.ru
 rsv.ru
 spravedlivo.ru
+histrf.ru
+rvio.histrf.ru
+rusinkg.ru
+sovross.ru
+newizv.ru
+sovainfo.ru
+sputnik.by
+regnum.ru
+gazeta.ru
+vm.ru
