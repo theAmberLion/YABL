@@ -35,16 +35,20 @@ delay 1s;
 		# resolve DNS name to IP address, and then convert IP host address to /24 network address. After that, add to address list, while using the dns name as comment.
 		:local ResolvedIP [:resolve $line]
 		
-		:local FirstDot  [:find $ResolvedIP "." 0];
-		:log info ("Result FDot: $FirstDot");
-		:local SecondDot [:find $ResolvedIP "." ($FirstDot+1)];
-		:log info ("Result SDot: $SecondDot");
+		:local FirstDot  [:find $ResolvedIP "." 0];		
+		:local SecondDot [:find $ResolvedIP "." ($FirstDot+1)];		
 		:local ThirdDot [:find $ResolvedIP "." ($SecondDot+1)];
-		:log info ("Result TDot: $ThirdDot");
-
+		
+		#For debugging
+		#:log info ("Result FDot: $FirstDot");
+		#:log info ("Result SDot: $SecondDot");
+		#:log info ("Result TDot: $ThirdDot");
+		
+		#This creates IP network address from first 3 octets.
 		:local NetPrefix ([:pick $ResolvedIP 0 ($FirstDot)] . "." . [:pick $ResolvedIP ($FirstDot+1) ($SecondDot)] . "." . [:pick $ResolvedIP ($SecondDot+1) ($ThirdDot)]);
 		:log info ("Result prefix : $NetPrefix");
-
+		
+		#This adds ".0/24" suffix
 		:local ResolvedNet "$NetPrefix.0/24";
 
 		/ip firewall address-list add list="cts" address=$ResolvedNet comment="DNSBL net $line";		
