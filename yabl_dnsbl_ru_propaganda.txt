@@ -148,4 +148,3 @@ news.ru
 inforeactor.ru
 politnavigator.net
 politnavigator.news
-news-front.info
